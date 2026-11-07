@@ -194,11 +194,11 @@ def call_anthropic(
 
 
 # ---------------------------------------------------------------------------
-# Task 4 — Compare Models (OpenAI GPT-4o vs OpenAI Mini vs Gemini 2.5 Flash)
+# Task 4 — Compare Models (OpenAI GPT-4o vs OpenAI Mini vs Gemini Flash)
 # ---------------------------------------------------------------------------
 def compare_models(prompt: str) -> dict:
     """
-    Call OpenAI (gpt-4o), OpenAI Mini (gpt-4o-mini), and Gemini 2.5 Flash (gemini-2.5-flash)
+    Call OpenAI (gpt-4o), OpenAI Mini (gpt-4o-mini), and Gemini Flash.
     with the same prompt and return a structured comparison dictionary.
     """
     # Call GPT-4o
@@ -215,11 +215,11 @@ def compare_models(prompt: str) -> dict:
         mini_usage["output_tokens"] * PRICING_1M_TOKENS["gpt-4o-mini"]["output"]
     ) / 1_000_000
     
-    # Call Gemini 2.5 Flash
+    # Call Gemini Flash
     gemini_text, gemini_lat, gemini_usage = call_gemini(prompt, model=GEMINI_MODEL)
     gemini_cost = (
-        gemini_usage["input_tokens"] * PRICING_1M_TOKENS["gemini-2.5-flash"]["input"] +
-        gemini_usage["output_tokens"] * PRICING_1M_TOKENS["gemini-2.5-flash"]["output"]
+        gemini_usage["input_tokens"] * PRICING_1M_TOKENS[GEMINI_MODEL]["input"] +
+        gemini_usage["output_tokens"] * PRICING_1M_TOKENS[GEMINI_MODEL]["output"]
     ) / 1_000_000
     
     return {
@@ -249,7 +249,7 @@ def compare_models(prompt: str) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Task 5 — Streaming chatbot with Gemini 2.5 (Focus Model)
+# Task 5 — Streaming chatbot with Gemini (Focus Model)
 # ---------------------------------------------------------------------------
 def streaming_chatbot() -> None:
     """
@@ -464,7 +464,7 @@ if __name__ == "__main__":
         print(f"Skipping live API comparison test: {e}")
         print("Set your API keys to run manual tests.")
 
-    print("\n=== Starting Gemini 2.5 Chatbot (type 'quit' to exit) ===")
+    print("\n=== Starting Gemini Chatbot (type 'quit' to exit) ===")
     try:
         streaming_chatbot()
     except Exception as e:

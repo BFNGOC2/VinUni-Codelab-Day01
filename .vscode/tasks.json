@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Chat with Gemini",
+			"type": "shell",
+			"command": ".\\.venv\\Scripts\\python.exe",
+			"args": [
+				"-c",
+				"import importlib.util; p='starter-code/template.py'; s=importlib.util.spec_from_file_location('template', p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); m.streaming_chatbot()"
+			],
+			"isBackground": false
+		}
+	]
+}
